@@ -25,4 +25,4 @@ docker run \
     --name phpmyadmin \
     -p 8081:80 \
     -e PMA_HOST=mysql \
-    -d phpmyadmin/phpmyadmin
+    -d phpmyadmin

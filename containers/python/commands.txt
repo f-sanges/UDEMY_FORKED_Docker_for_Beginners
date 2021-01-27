@@ -1,0 +1,14 @@
+docker run -it -v $PWD:/app -w /app python python3 calendar-app.py
+
+-it										interactive mode and pseudo terminal (necessary for input)
+
+-v <local_volume>:<container_volume>	map local volume to the container volume
+
+-w <container_position>					workind directory inside the container
+
+python									name of the images
+
+python3									name of the command
+
+calendar-app.py							name of the app
+										note: the file will be put in /app path (directory app will be created) inside the container
