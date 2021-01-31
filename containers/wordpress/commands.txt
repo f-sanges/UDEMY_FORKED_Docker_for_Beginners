@@ -1,28 +1,36 @@
+NOTE: in the following example specific versions of the images are used and tested
+
 CREATE CUSTOM BRIDGE NETWORK
-docker network create wordpress
+docker network create wordpress_net
 
 START MYSQL SERVER WITH CUSTOM ROOT PASSWORD
 docker run \
-    --network wordpress \
+	--rm \
+    --network wordpress_net \
     -e MYSQL_ROOT_PASSWORD=my-password \
     -e MYSQL_DATABASE=wordpress \
     -e MYSQL_USER=wordpress \
     -e MYSQL_PASSWORD=wordpress \
     --name mysql \
-    -d mysql:5.7
+    -d \
+	mysql:5.7
 
 START WORDPRESS
 docker run \
-    --network wordpress \
+	--rm \
+    --network wordpress_net \
     --name wordpress \
     -p 8080:80 \
-    -d wordpress:5.4
+    -d \
+	wordpress:5.4
 
 
 START PHPMYADMIN WITH PMA_HOST VARIABLE (over DNS name - name of the container)
 docker run \
-    --network wordpress \
+	--rm \
+    --network wordpress_net \
     --name phpmyadmin \
     -p 8081:80 \
     -e PMA_HOST=mysql \
-    -d phpmyadmin
+    -d \
+	phpmyadmin
